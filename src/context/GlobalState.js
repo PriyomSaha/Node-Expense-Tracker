@@ -4,10 +4,10 @@ import AppReducer from './AppReducer'
 //Initial Satate
 const initialState = {
     transactions:[
-        {id:1,text:'Flower',amount:-10},
+        /*{id:1,text:'Flower',amount:-10},
         {id:2,text:'Salary',amount:+2500},
         {id:3,text:'Electricity',amount:-400},
-        {id:4,text:'Fees',amount:+200},
+        {id:4,text:'Fees',amount:+200},*/
     ]
 }
 
@@ -26,10 +26,18 @@ export const GlobalProvider = ({ children }) => {
         });
     }
 
+    function addTransaction(transaction){
+        dispatch({
+            type:'ADD_TRANSACTION',
+            payload: transaction,
+            //clearField();
+        });
+    }
     return(<GlobalContext.Provider value={{
         transactions: state.transactions,
-        deleteTransaction
-    }}>
+        deleteTransaction,
+        addTransaction
+    }}>         
         {children}
     </GlobalContext.Provider>)
 }
